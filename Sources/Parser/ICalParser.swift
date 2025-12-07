@@ -197,7 +197,7 @@ public struct ICalParser {
     private func icsToElements(_ ics: String) -> [(name: String, value: String)] {
         return ics
             .replacing(pattern: "(\r?\n)+[ \t]", with: "")
-            .components(separatedBy: "\n")
+            .components(separatedBy: .newlines)
             .map { $0.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: true) }
             .filter { $0.count > 1 }
             .map { (String($0[0]), String($0[1])) }
