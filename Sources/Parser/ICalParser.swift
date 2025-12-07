@@ -220,7 +220,8 @@ public struct ICalParser {
             }
             
             if currentComponent != nil {
-                if element.name == Constant.Prop.begin, element.value != name {
+                if element.name == Constant.Prop.begin,
+                   element.value.trimmingCharacters(in: .newlines) != name {
                     childComponent = []
                 }
                 
