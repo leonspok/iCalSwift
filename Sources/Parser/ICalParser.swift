@@ -212,7 +212,8 @@ public struct ICalParser {
         var childComponent: [(String, String)]?
         
         for element in elements {
-            if element.name == Constant.Prop.begin, element.value == name {
+            if element.name == Constant.Prop.begin,
+               element.value.trimmingCharacters(in: .newlines) == name {
                 if currentComponent == nil {
                     currentComponent = []
                 }
@@ -230,7 +231,8 @@ public struct ICalParser {
                 }
             }
             
-            if element.name == Constant.Prop.end, element.value == name {
+            if element.name == Constant.Prop.end,
+               element.value.trimmingCharacters(in: .newlines) == name {
                 if let currentComponent = currentComponent {
                     let componentElement = ICalComponent(
                         properties: currentComponent,
